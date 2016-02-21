@@ -53,5 +53,3 @@ print count
 ##print accuracy_score(pred,labels_test)
 
 #########################################################
-
-

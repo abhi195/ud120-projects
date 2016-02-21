@@ -46,7 +46,7 @@ print "prediction time:", round(time()-t1, 3), "s"
 count=0
 for i in pred:
 	if i==1:
-		count+=1;
+		count+=1
 
 print count
 
@@ -54,4 +54,4 @@ print count
 
 #########################################################
 
-
+###Abhi
