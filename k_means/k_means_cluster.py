@@ -85,6 +85,24 @@ clf=KMeans(n_clusters=3)
 clf.fit(finance_features)
 pred=clf.predict(finance_features)
 
+###Lesson-9 mini-project Scaling
+from sklearn.preprocessing import MinMaxScaler
+
+rescaled_salary=numpy.empty(shape=(len(finance_features),1))
+rescaled_exercised_stock_options=numpy.empty(shape=(len(finance_features),1))
+j=0
+for f1,f2,_ in finance_features:
+    rescaled_salary[j][0]=f1
+    rescaled_exercised_stock_options[j][0]=f2
+    j+=1
+
+scaler = MinMaxScaler()
+rescaled_salary=scaler.fit_transform(rescaled_salary)
+rescaled_exercised_stock_options=scaler.fit_transform(rescaled_exercised_stock_options)
+
+# print rescaled_salary
+# print rescaled_exercised_stock_options
+
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
