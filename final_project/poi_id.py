@@ -10,11 +10,28 @@ from tester import dump_classifier_and_data
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
-features_list = ['poi','salary'] # You will need to use more features
+
+# total_features_list is list of all features except 'poi' as 'poi' needs to be first in feature_list
+total_features_list = ['salary', 'deferral_payments', 'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'director_fees','to_messages', 'email_address', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi'] # You will need to use more features
+# Removing 'email_address' feature
+total_features_list.remove('email_address')
+features_list = ['poi']
 
 ### Load the dictionary containing the dataset
 with open("final_project_dataset.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
+
+data_dict_len = len(data_dict)
+
+for feature in total_features_list:
+	total_NaN_for_a_feature = 0
+	for entry in data_dict:
+		if data_dict[entry][feature]=='NaN':
+			total_NaN_for_a_feature+=1
+	if total_NaN_for_a_feature < data_dict_len/2:
+		features_list.append(feature)
+
+print features_list
 
 ### Task 2: Remove outliers
 ### Task 3: Create new feature(s)
